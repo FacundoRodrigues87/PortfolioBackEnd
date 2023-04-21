@@ -78,7 +78,7 @@ public class Usuariocontroller {
 
     @GetMapping("/user/profile")
     public Usuario getUser() {
-        return UserService.buscarUsuario((long) 0);
+        return UserService.buscarUsuario((long) 1);
     }
 
 }
