@@ -4,6 +4,7 @@
  */
 package com.PortfolioFR.PortfolioFR.Entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -13,8 +14,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 /**
@@ -30,17 +29,19 @@ public class ExperienciaLaboral implements Serializable {
     private String empresa;
     @Column(name = "Descripcion")
     private String descripcion;
+    @Column (name = "url_foto")
+    private String url_foto;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_experiencialaboral")
     private Integer idExperiencialaboral;
-    @JoinColumn(name = "tipo_empleo_idTipo de empleo", referencedColumnName = "idTipo de empleo")
-    @ManyToOne(optional = false)
-    private TipoEmpleo tipoempleoidTipodeempleo;
     @JoinColumn(name = "usuario_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
+    @JsonIgnoreProperties({"apellido", "correo", "acercade", "urlFoto", "skillsList", "experienciaLaboralList", "educacionList", "proyectosList"})
     private Usuario idUsuario;
+
+    
     public ExperienciaLaboral() {
     }
 
@@ -48,11 +49,19 @@ public class ExperienciaLaboral implements Serializable {
         this.idExperiencialaboral = idExperiencialaboral;
     }
 
-    public ExperienciaLaboral(Integer idExperiencialaboral, TipoEmpleo tipoempleoidTipodeempleo, Usuario usuarioidUsuario) {
-        this.idExperiencialaboral = idExperiencialaboral;
-        this.tipoempleoidTipodeempleo = tipoempleoidTipodeempleo;
-        this.idUsuario = usuarioidUsuario;
+    public ExperienciaLaboral(String empresa, String descripcion, Usuario idUsuario, String url_foto) {
+        this.empresa = empresa;
+        this.descripcion = descripcion;
+        this.idUsuario = idUsuario;
+        this.url_foto = url_foto;
+    }
 
+    public String getUrl_foto() {
+        return url_foto;
+    }
+
+    public void setUrl_foto(String url_foto) {
+        this.url_foto = url_foto;
     }
 
     public String getEmpresa() {
@@ -77,14 +86,6 @@ public class ExperienciaLaboral implements Serializable {
 
     public void setIdExperiencialaboral(Integer idExperiencialaboral) {
         this.idExperiencialaboral = idExperiencialaboral;
-    }
-
-    public TipoEmpleo getTipoempleoidTipodeempleo() {
-        return tipoempleoidTipodeempleo;
-    }
-
-    public void setTipoempleoidTipodeempleo(TipoEmpleo tipoempleoidTipodeempleo) {
-        this.tipoempleoidTipodeempleo = tipoempleoidTipodeempleo;
     }
 
     public Usuario getIdUsuario() {

@@ -45,7 +45,7 @@ public class Usuario implements Serializable {
     @JsonIgnoreProperties
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Skills> skillsList;
-    @JsonIgnoreProperties
+    @JsonIgnoreProperties({"idUsuario"})
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<ExperienciaLaboral> experienciaLaboralList;
     @JsonIgnoreProperties
