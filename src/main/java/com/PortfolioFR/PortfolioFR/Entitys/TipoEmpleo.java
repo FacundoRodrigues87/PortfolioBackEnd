@@ -4,6 +4,7 @@
  */
 package com.PortfolioFR.PortfolioFR.Entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
 import jakarta.persistence.Basic;
@@ -32,8 +33,6 @@ public class TipoEmpleo implements Serializable {
     private Integer idTipodeempleo;
     @Column(name = "nombre_tipo")
     private String nombreTipo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idExperiencialaboral")
-    private List<ExperienciaLaboral> experienciaLaboralList;
 
     public TipoEmpleo() {
     }
@@ -57,14 +56,6 @@ public class TipoEmpleo implements Serializable {
 
     public void setNombreTipo(String nombreTipo) {
         this.nombreTipo = nombreTipo;
-    }
-
-    public List<ExperienciaLaboral> getExperienciaLaboralList() {
-        return experienciaLaboralList;
-    }
-
-    public void setExperienciaLaboralList(List<ExperienciaLaboral> experienciaLaboralList) {
-        this.experienciaLaboralList = experienciaLaboralList;
     }
 
     @Override

@@ -18,10 +18,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-/**
- *
- * @author Facundo
- */
+
 @Entity
 @Table(name = "usuario")
 @JsonIdentityInfo(

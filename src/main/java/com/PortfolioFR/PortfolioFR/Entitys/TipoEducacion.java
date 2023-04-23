@@ -32,8 +32,6 @@ public class TipoEducacion implements Serializable {
     private Integer idtipoEducacion;
     @Column(name = "tipo_educacion")
     private String tipoEducacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEducacion")
-    private List<Educacion> educacionList;
 
     public TipoEducacion() {
     }
@@ -56,14 +54,6 @@ public class TipoEducacion implements Serializable {
 
     public void setTipoEducacion(String tipoEducacion) {
         this.tipoEducacion = tipoEducacion;
-    }
-
-    public List<Educacion> getEducacionList() {
-        return educacionList;
-    }
-
-    public void setEducacionList(List<Educacion> educacionList) {
-        this.educacionList = educacionList;
     }
 
     @Override

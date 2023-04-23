@@ -35,9 +35,9 @@ public class ExperienciaLaboral implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_experiencialaboral")
     private Integer idExperiencialaboral;
-    @Basic(optional = false)
-    @Column(name = "id_tipodeempleo")
-    private int tipoempleoidTipodeempleo;
+    @JoinColumn(name = "tipo_empleo_idTipo de empleo", referencedColumnName = "idTipo de empleo")
+    @ManyToOne(optional = false)
+    private TipoEmpleo tipoempleoidTipodeempleo;
     @JoinColumn(name = "usuario_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
     private Usuario idUsuario;
@@ -48,7 +48,7 @@ public class ExperienciaLaboral implements Serializable {
         this.idExperiencialaboral = idExperiencialaboral;
     }
 
-    public ExperienciaLaboral(Integer idExperiencialaboral, int tipoempleoidTipodeempleo, Usuario usuarioidUsuario) {
+    public ExperienciaLaboral(Integer idExperiencialaboral, TipoEmpleo tipoempleoidTipodeempleo, Usuario usuarioidUsuario) {
         this.idExperiencialaboral = idExperiencialaboral;
         this.tipoempleoidTipodeempleo = tipoempleoidTipodeempleo;
         this.idUsuario = usuarioidUsuario;
@@ -79,11 +79,11 @@ public class ExperienciaLaboral implements Serializable {
         this.idExperiencialaboral = idExperiencialaboral;
     }
 
-    public int getTipoempleoidTipodeempleo() {
+    public TipoEmpleo getTipoempleoidTipodeempleo() {
         return tipoempleoidTipodeempleo;
     }
 
-    public void setTipoempleoidTipodeempleo(int tipoempleoidTipodeempleo) {
+    public void setTipoempleoidTipodeempleo(TipoEmpleo tipoempleoidTipodeempleo) {
         this.tipoempleoidTipodeempleo = tipoempleoidTipodeempleo;
     }
 
