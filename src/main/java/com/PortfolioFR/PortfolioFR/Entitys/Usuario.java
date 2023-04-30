@@ -42,25 +42,35 @@ public class Usuario implements Serializable {
     @Column(name = "url_foto")
     private String urlFoto;
 
-    @JsonIgnoreProperties
+    @JsonIgnoreProperties({"idUsuario"})
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Skills> skillsList;
     @JsonIgnoreProperties({"idUsuario"})
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<ExperienciaLaboral> experienciaLaboralList;
-    @JsonIgnoreProperties
+    @JsonIgnoreProperties({"idUsuario"})
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Educacion> educacionList;
-    @JsonIgnoreProperties
+    @JsonIgnoreProperties({"idUsuario"})
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Proyectos> proyectosList;
 
     public Usuario() {
     }
 
-    public Usuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+    public Usuario(String nombre, String apellido, String correo, String acercade, String urlFoto, List<Skills> skillsList, List<ExperienciaLaboral> experienciaLaboralList, List<Educacion> educacionList, List<Proyectos> proyectosList) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.acercade = acercade;
+        this.urlFoto = urlFoto;
+        this.skillsList = skillsList;
+        this.experienciaLaboralList = experienciaLaboralList;
+        this.educacionList = educacionList;
+        this.proyectosList = proyectosList;
     }
+
+    
 
     public Integer getIdUsuario() {
         return idUsuario;

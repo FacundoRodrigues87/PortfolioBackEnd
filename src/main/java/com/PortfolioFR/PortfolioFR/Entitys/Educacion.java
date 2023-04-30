@@ -4,24 +4,18 @@
  */
 package com.PortfolioFR.PortfolioFR.Entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Basic;
 import java.io.Serializable;
 import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
-/**
- *
- * @author Facundo
- */
 @Entity
 @Table(name = "educacion")
 public class Educacion implements Serializable {
@@ -36,33 +30,39 @@ public class Educacion implements Serializable {
     private String instituto;
     @Column(name = "descripcion")
     private String descripcion;
-    @JoinColumn(name = "idtipo_educacion", referencedColumnName = "idtipo_educacion", insertable = false, updatable = false)
+     @Column (name = "url_foto")
+    private String url_foto;
+    @JoinColumn(name = "usuario_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
-    private TipoEducacion tipoEducacion;
-    @JoinColumn(name = "usuario_idUsuario", referencedColumnName = "idUsuario", insertable = false, updatable = false )
-    @ManyToOne(optional = false)
+    @JsonIgnoreProperties({"apellido", "correo", "acercade", "urlFoto", "skillsList", "experienciaLaboralList", "educacionList", "proyectosList"})
     private Usuario idUsuario;
 
     public Educacion() {
     }
 
-    public Educacion(Integer idEducacion ) {
-        this.idEducacion  = idEducacion ;
-    }
-
-    public Educacion(Integer idEducacion, Usuario idUsuario, TipoEducacion tipoEducacion) {
-        this.idEducacion  = idEducacion;
+    public Educacion(String instituto, String descripcion, String url_foto, Usuario idUsuario) {
+        this.instituto = instituto;
+        this.descripcion = descripcion;
+        this.url_foto = url_foto;
         this.idUsuario = idUsuario;
-        this.tipoEducacion = tipoEducacion;
     }
 
-    public Integer getidEducacion() {
+    public Integer getIdEducacion() {
         return idEducacion;
     }
 
-    public void setidEducacion(Integer idEducacion) {
+    public void setIdEducacion(Integer idEducacion) {
         this.idEducacion = idEducacion;
     }
+
+    public String getUrl_foto() {
+        return url_foto;
+    }
+
+    public void setUrl_foto(String url_foto) {
+        this.url_foto = url_foto;
+    }
+
 
     public String getInstituto() {
         return instituto;
@@ -80,13 +80,6 @@ public class Educacion implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public TipoEducacion getTipoEducacion() {
-        return tipoEducacion;
-    }
-
-    public void setTipoEducacion(TipoEducacion tipoEducacion) {
-        this.tipoEducacion = tipoEducacion;
-    }
 
     public Usuario getIdUsuario() {
         return idUsuario;

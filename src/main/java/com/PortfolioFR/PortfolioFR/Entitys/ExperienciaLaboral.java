@@ -25,17 +25,17 @@ import jakarta.persistence.Table;
 public class ExperienciaLaboral implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_experiencialaboral")
+    private Integer idExperiencialaboral;
     @Column(name = "empresa")
     private String empresa;
     @Column(name = "Descripcion")
     private String descripcion;
     @Column (name = "url_foto")
     private String url_foto;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_experiencialaboral")
-    private Integer idExperiencialaboral;
     @JoinColumn(name = "usuario_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
     @JsonIgnoreProperties({"apellido", "correo", "acercade", "urlFoto", "skillsList", "experienciaLaboralList", "educacionList", "proyectosList"})
@@ -43,10 +43,6 @@ public class ExperienciaLaboral implements Serializable {
 
     
     public ExperienciaLaboral() {
-    }
-
-    public ExperienciaLaboral(Integer idExperiencialaboral) {
-        this.idExperiencialaboral = idExperiencialaboral;
     }
 
     public ExperienciaLaboral(String empresa, String descripcion, Usuario idUsuario, String url_foto) {

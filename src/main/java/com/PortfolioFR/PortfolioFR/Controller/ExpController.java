@@ -10,7 +10,6 @@ import com.PortfolioFR.PortfolioFR.Security.Controller.Mensaje;
 import com.PortfolioFR.PortfolioFR.Service.SExperiencia;
 import io.micrometer.common.util.StringUtils;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -96,4 +95,14 @@ public class ExpController {
         sExp.save(exp);
         
     }
+    
+        @PutMapping("/editdesc/{id}")
+    public void editDesc(@PathVariable int id, @RequestParam("descripcion") String nuevaDescripcion){
+        
+        ExperienciaLaboral exp = sExp.getOne(id);
+        exp.setDescripcion(nuevaDescripcion);
+        sExp.save(exp);
+        
+    }
+    
 }
