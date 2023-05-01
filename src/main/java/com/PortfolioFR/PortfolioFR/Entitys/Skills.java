@@ -4,6 +4,7 @@
  */
 package com.PortfolioFR.PortfolioFR.Entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -37,8 +38,9 @@ public class Skills implements Serializable {
     private String name;
     @Column(name = "amount")
     private Integer amount;
-    @JoinColumn(name = "usuario_idUsuario", referencedColumnName = "idUsuario", insertable = false, updatable = false)
+   @JoinColumn(name = "usuario_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
+    @JsonIgnoreProperties({"apellido", "correo", "acercade", "urlFoto", "skillsList", "experienciaLaboralList", "educacionList", "proyectosList"})
     private Usuario idUsuario;
 
     public Skills() {
@@ -48,11 +50,13 @@ public class Skills implements Serializable {
         this.idSkill = idSkill;
     }
 
-    public Skills(Integer idSkill, Usuario IdUsuario) {
-        this.idSkill = idSkill;
-        this.idUsuario = IdUsuario;
+    public Skills(String name, Integer amount, Usuario idUsuario) {
+        this.name = name;
+        this.amount = amount;
+        this.idUsuario = idUsuario;
     }
 
+    
 
 
     public Integer getidSkill() {
@@ -75,8 +79,13 @@ public class Skills implements Serializable {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public String setAmount(Integer amount) {
+        if(amount>100){
+            return "El valor no puede ser mayor que 100";
+        }else{
         this.amount = amount;
+        return "Amount set";
+        }
     }
 
     public Usuario getidUsuario() {
