@@ -4,6 +4,7 @@
  */
 package com.PortfolioFR.PortfolioFR.Entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -41,8 +42,9 @@ public class Proyectos implements Serializable {
     private String urlProyecto;
     @Column(name = "url_imagen")
     private String urlImagen;
-    @JoinColumn(name = "usuario_idUsuario", referencedColumnName = "idUsuario", insertable = false, updatable = false)
+    @JoinColumn(name = "usuario_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
+    @JsonIgnoreProperties({"apellido", "correo", "acercade", "urlFoto", "skillsList", "experienciaLaboralList", "educacionList", "proyectosList"})
     private Usuario idUsuario;
 
 
@@ -50,13 +52,12 @@ public class Proyectos implements Serializable {
     public Proyectos() {
     }
 
-    public Proyectos(Integer idProyecto) {
-        this.idProyecto = idProyecto;
-    }
-
-    public Proyectos(Integer idProyecto, Usuario IdUsuario) {
-        this.idProyecto = idProyecto;
-        this.idUsuario = IdUsuario;
+    public Proyectos(String title, String descripcion, String urlProyecto, String urlImagen, Usuario idUsuario) {
+        this.title = title;
+        this.descripcion = descripcion;
+        this.urlProyecto = urlProyecto;
+        this.urlImagen = urlImagen;
+        this.idUsuario = idUsuario;
     }
 
 
