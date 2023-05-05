@@ -30,6 +30,7 @@ com\PortfolioFR\PortfolioFR\Entitys\Educacion.class
 com\PortfolioFR\PortfolioFR\Entitys\Usuario.class
 com\PortfolioFR\PortfolioFR\Repository\IUsuarioRepository.class
 com\PortfolioFR\PortfolioFR\Service\ImpUsuarioService.class
+WebConfig.class
 com\PortfolioFR\PortfolioFR\DTO\DtoPro.class
 com\PortfolioFR\PortfolioFR\Security\Controller\AuthController.class
 com\PortfolioFR\PortfolioFR\Security\jwt\JwtTokenFilter.class
