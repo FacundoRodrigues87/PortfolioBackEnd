@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200", "https://portfoliofacurodrigues.web.app"})
+@CrossOrigin(origins = "*")
 public class Usuariocontroller {
 
     @Autowired
